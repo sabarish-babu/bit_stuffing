@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include<string.h>
+int main() {
+    char a[100];
+    scanf("%s",a);
+    int s=strlen(a);
+    int code[s];
+    for(int i=0;i<strlen(a);i++)
+    {
+        int b = a[i];
+        if(b==49)
+        code[i]=1;
+        else
+        code[i]=0;
+    }
+    int count=0;
+    for(int i=0;i<s;i++)
+    {
+        if(code[i]==1 && code[i+1]==1&& code[i+2]==1&& code[i+3]==1&& code[i+4]==1)
+        {
+            count+=1;
+        }
+    }
+    int result[s+count];
+    for(int i=0;i<s;i++)
+    {
+        result[i]=code[i];
+    }
+    for(int i=0;i<s+count;i++)
+    {
+        int pos=0;
+        if(result[i]==1 && result[i+1]==1&& result[i+2]==1&&result[i+3]==1&&result[i+4]==1)
+        {
+            pos=i+5;
+            for(int j=s+count;j>=pos;j--)
+            {
+                result[j]=result[j-1];
+            }
+            result[pos]=0;
+            i=pos+1;
+        }
+    }
+    for(int i=0;i<s+count;i++)
+    {
+        printf("%d",result[i]);
+    }
+}
+
