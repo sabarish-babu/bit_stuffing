@@ -1,0 +1,37 @@
+#include<stdio.h>
+#include<string.h>
+#define max_len 1000
+int main()
+{
+    char a[max_len];
+    scanf("%s",a);
+    int code_len=strlen(a);
+    int code[code_len];
+    for(int i=0;i<code_len;i++)
+    {
+        int b=a[i];
+        if(b==49)
+        code[i]=1;
+        else
+        code[i]=0;
+    }
+    int count=0;
+    for(int i=0;i<code_len;i++)
+    {
+        int pos=0;
+        if(code[i]==1 && code[i+1]==1&& code[i+2]==1&& code[i+3]==1&& code[i+4]==1)
+        {
+            pos=i+5;
+            for(int j=pos;j<code_len;j++)
+            {
+                code[j]=code[j+1];
+            }
+            code_len--;
+            i=pos;
+        }
+    }
+    for(int i=0;i<code_len;i++)
+    {
+        printf("%d",code[i]);
+    }
+}
